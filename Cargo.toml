@@ -1,0 +1,62 @@
+[package]
+name = "paint"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+eframe = { version = "0.33.0", default-features = false, features = [
+  "accesskit",     # Make egui compatible with screen readers. NOTE: adds a lot of dependencies.
+  "default_fonts", # Embed the default egui fonts.
+  "glow",          # Use the glow rendering backend. Alternative: "wgpu".
+  "persistence",   # Enable restoring app state when restarting the app.
+  "wayland",       # To support Linux (and CI)
+  "x11",           # To support older Linux distributions (restores one of the default features)
+
+  "__screenshot", # __screenshot is so we can dump a screenshot using EFRAME_SCREENSHOT_TO
+] }
+egui = { version = "0.33.3", features = ["color-hex"] }
+
+[workspace.lints.rust]
+
+unsafe_code = "deny" # Larang penggunaan unsafe
+
+# Warning umum untuk menjaga kualitas kode
+elided_lifetimes_in_paths = "warn"
+future_incompatible = { level = "warn", priority = -1 }
+nonstandard_style = { level = "warn", priority = -1 }
+rust_2018_idioms = { level = "warn", priority = -1 }
+rust_2021_prelude_collisions = "warn"
+
+unused_import_braces = "warn"
+unused_lifetimes = "warn"
+
+# Beberapa diizinkan (biar tidak terlalu strict)
+trivial_casts = "allow"
+unused_qualifications = "allow"
+
+# ----------------------------------------------------------------------------------------
+# Rustdoc lint (dokumentasi)
+[workspace.lints.rustdoc]
+all = "warn"
+missing_crate_level_docs = "warn"
+
+# ----------------------------------------------------------------------------------------
+# Clippy lint (best practice & clean code)
+[workspace.lints.clippy]
+
+# Hampir semua warning diaktifkan untuk menjaga kualitas codebase
+dbg_macro = "warn"
+unwrap_used = "warn"
+todo = "warn"
+unimplemented = "warn"
+
+# Contoh: larang panic tanpa expect
+should_panic_without_expect = "warn"
+
+# Hindari penggunaan yang tidak efisien
+inefficient_to_string = "warn"
+large_stack_arrays = "warn"
+
+# Beberapa aturan di-allow (lebih fleksibel)
+manual_range_contains = "allow"
+map_unwrap_or = "allow"
