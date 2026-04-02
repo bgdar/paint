@@ -20,11 +20,11 @@ pub struct brush {
 }
 
 impl brush {
-    pub fn new() -> Self {
+    pub fn new(pos: Pos2, color: Color32, radius: f32) -> Self {
         Self {
-            kordiant: Pos2::default(),
-            color: Color32::default(),
-            radius: Some(3.2),
+            kordiant: pos,
+            color,
+            radius: Some(radius),
         }
     }
 }

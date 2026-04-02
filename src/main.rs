@@ -7,9 +7,10 @@ mod body;
 mod core;
 mod event;
 mod header;
+mod sidebar;
 
 use eframe::{App, egui};
-use egui::{Color32, Pos2};
+use egui::Color32;
 
 use crate::core::brush;
 
@@ -22,9 +23,10 @@ struct PaintApp {
     // brush_color: Color32,
 
     // solusi : brus punya data sendiri
-    brush: Vec<brush>,
+    brushs: Vec<brush>,
     curr_color: Color32,
-
+    last_brush_index: Vec<usize>, // dftar index mouse saat mulai menggambar
+    stack_data_redo: Vec<Vec<brush>>, // ini data dari undo yang di simpan di sini sementara
     curr_radius: f32,
 }
 
@@ -38,9 +40,11 @@ impl App for PaintApp {
 
         // body tempat menggambar di lakukan
         body::body(
-            &mut self.brush,
+            &mut self.brushs,
             self.curr_color,
             &mut self.curr_radius,
+            &mut self.last_brush_index,
+            &mut self.stack_data_redo,
             &ctx,
         );
     }
@@ -52,9 +56,11 @@ impl App for PaintApp {
 impl Default for PaintApp {
     fn default() -> Self {
         Self {
-            brush: Vec::new(),
+            brushs: Vec::new(),
             curr_color: Color32::default(),
             curr_radius: 3.2, // default ketebalan line
+            last_brush_index: Vec::new(),
+            stack_data_redo: Vec::new(),
         }
     }
 }

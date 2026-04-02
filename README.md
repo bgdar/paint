@@ -6,7 +6,7 @@ Paint
 
 ### Tech
 
-<p align="align">
+<p align="center">
   <!-- Rust -->
   <a href="https://www.rust-lang.org/" target="_blank">
     <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust"/>
@@ -23,12 +23,16 @@ Paint
   </a>
 </p>
 
-### target
+### Result
 
-- drawing windows
-- save dengan CNT + s ( simpan koordiant dan load kembali)
+- drawing windows with small circle
+- selcksi warna untuk warna warna brush
+- bisa memperbesar ukuran brush dengan roda mouse
+- CNT + z : undo draw atau kembali gambar
+- CNT + r : redo draw atau lanjutkan gambar
+<!-- - save dengan CNT + s ( simpan koordiant dan load kembali) -->
 
-### Main Color
+### Main APP Color
 
 - Deep Charcoal: #1D1D1B
 - Rust Orange: #CE412B
